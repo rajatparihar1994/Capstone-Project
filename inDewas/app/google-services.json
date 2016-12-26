@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "585581042662",
+    "firebase_url": "https://indewas-edc8f.firebaseio.com",
+    "project_id": "indewas-edc8f",
+    "storage_bucket": "indewas-edc8f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585581042662:android:e42cb83598527007",
+        "android_client_info": {
+          "package_name": "io.github.rajatparihar1994.indewas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585581042662-r2rdkps7vpfmlc1u8hrqn3l0s6h7leb1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.github.rajatparihar1994.indewas",
+            "certificate_hash": "3D38E53C6E9398229C2C29CA3BEBC338E9271D63"
+          }
+        },
+        {
+          "client_id": "585581042662-m277rdok70etpuvesvso66b1frc92r51.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFyulsitdpRwhmoEyeGCZCejw4br2zVWE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "585581042662-m277rdok70etpuvesvso66b1frc92r51.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
