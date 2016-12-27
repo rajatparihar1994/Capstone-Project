@@ -1,15 +1,22 @@
 <resources>
     <string name="app_name">inDewas</string>
     <string name="firebse_database_news">news</string>
-    <string name="firebse_database_newsid">newsid</string>
-    <string name="firebase_storage_newsImages">newsImages</string>
+
+
 
 
     <!-- Toast Strings -->
     <string name="news_updated">Feeds updated...</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="action_settings">Settings</string>
-    <string name="checkboxforimage">Dont Show Images</string>
+
+
+    <string name="checkboxforimage">Show Images</string>
+    <string name="imageContentDescription">News Image</string>
+    <string name="testheadlinetext">HeadingHeadingHeadingHeadingHeading</string>
+    <string name="testcontenttext">ContentContentContentContent</string>
+    <string name="showImagecheckbox">Show Images</string>
+    <string name="dontShowImageCheckbox">Dont Show Images</string>
+
+
 
 
    </resources>

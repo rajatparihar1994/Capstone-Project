@@ -7,4 +7,5 @@ package io.github.rajatparihar1994.indewas.utils;
 public class Constants {
 
     public static final String FIREBASE_IMAGE_PATH = "newsImages";
+
 }

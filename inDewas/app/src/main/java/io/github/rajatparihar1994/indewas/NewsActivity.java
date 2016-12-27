@@ -1,28 +1,27 @@
 package io.github.rajatparihar1994.indewas;
 
-import android.content.ContentProvider;
+
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
+
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.Parcelable;
+
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ImageView;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.database.ChildEventListener;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,9 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -53,18 +50,22 @@ public class NewsActivity extends AppCompatActivity {
     SQLiteDatabase db;
     Cursor cursorData;
 
-    private FirebaseAnalytics mFirebaseAnalytics;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference newsRef;
-    private ChildEventListener mChildEventListener;
     private FirebaseStorage mFirebaseStorage;
     private StorageReference mNewsPhotoStorageReference;
+
+    private CheckBox checkBox_show_image_option;
+
+    private boolean show_image_status;
+    public static SharedPreferences sharedPreferences = null;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.news_activity);
+
 
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -76,6 +77,8 @@ public class NewsActivity extends AppCompatActivity {
         newsDbHealper = new NewsDbHealper(getBaseContext());
         db = newsDbHealper.getWritableDatabase();
 
+
+
         if (isNetworkAvailable()) {
             // Fetch data form Firebase
             fetchNewsFromDatabase();
@@ -84,8 +87,6 @@ public class NewsActivity extends AppCompatActivity {
             fetchNewsFromDatabase();
             Toast.makeText(getApplicationContext(), "Connection Error", Toast.LENGTH_SHORT).show();
         }
-
-
 
 
     }
@@ -137,7 +138,7 @@ public class NewsActivity extends AppCompatActivity {
     }
 
     public void fetchNewsFromDatabase() {
-//        SQLiteDatabase db = newsDbHelper.getReadableDatabase();
+
 
         String projection[] = {
                 NewsContract.NewsEntry.COLUMN_NEWSID,
@@ -148,13 +149,6 @@ public class NewsActivity extends AppCompatActivity {
                 NewsContract.NewsEntry.COLUMN_IMAGE
         };
 
-//        cursorData = db.query(NewsContract.NewsEntry.TABLE_NAME,
-//                projection,
-//                null,
-//                null,
-//                null,
-//                null,
-//                NewsContract.NewsEntry.COLUMN_NEWSID+ " DESC");
         Uri uri = NewsContract.NewsEntry.CONTENT_URI;
         cursorData = getContentResolver().query(uri, projection, null, null, null);
 
@@ -164,9 +158,9 @@ public class NewsActivity extends AppCompatActivity {
                 Log.e("FetchAllNews ", "Data present in database " + columnCount + "");
                 newsList.clear();
                 do {
-                    String headline, content, date, time, image, ncategory, source;
+                    String headline, content, date, time, image;
                     Long newsid;
-                    int id;
+
 
                     int newsIdColumnIndex = cursorData.getColumnIndex(NewsContract.NewsEntry.COLUMN_NEWSID);
                     int contentColumnIndex = cursorData.getColumnIndex(NewsContract.NewsEntry.COLUMN_NEWS_CONTENT);
@@ -191,19 +185,6 @@ public class NewsActivity extends AppCompatActivity {
 
 
 
-
-//                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//                        News singleNews = mNewsAdapter.getItem(position);
-//                        Intent intent = new Intent(getApplicationContext(), DetailNews.class);
-//                        intent.putExtra("singleNews", singleNews);
-//                        startActivity(intent);
-//
-//
-//                    }
-//                });
-
             }
         } finally {
             cursorData.close();
@@ -214,19 +195,51 @@ public class NewsActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        MenuItem item = menu.findItem(R.id.action_check);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        show_image_status = sharedPreferences.getBoolean("IMAGE",Boolean.TRUE);
+        item.setChecked(show_image_status);
+
+
+
         return true;
+
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        if (id == R.id.action_check) {
 
-        if (id == R.id.checkbox) {
-            return true;
+
+            if (item.isChecked()) {
+                // If item already checked then unchecked it
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("IMAGE",Boolean.FALSE).apply();
+                item.setChecked(false);
+                fetchNewsFromDatabase();
+                Toast.makeText(getApplicationContext(), R.string.dontShowImageCheckbox, Toast.LENGTH_SHORT).show();
+
+
+            } else {
+                // If item is unchecked then checked it
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("IMAGE",Boolean.TRUE).apply();
+                item.setChecked(true);
+                fetchNewsFromDatabase();
+
+
+                Toast.makeText(getApplicationContext(), R.string.showImagecheckbox , Toast.LENGTH_SHORT).show();
+
+
+                }
+
         }
-
         return super.onOptionsItemSelected(item);
     }
+
 
     @Override
     public void onBackPressed() {

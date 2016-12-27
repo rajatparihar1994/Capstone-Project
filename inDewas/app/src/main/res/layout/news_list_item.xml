@@ -14,6 +14,7 @@
         android:layout_height="@dimen/list_item_height"
         android:src="@drawable/no_image_available"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/imageContentDescription"
         />
 
     <LinearLayout

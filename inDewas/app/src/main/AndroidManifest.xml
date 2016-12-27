@@ -17,11 +17,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".DetailNews"
+            android:parentActivityName=".NewsActivity"
+            ></activity>
         <provider
             android:authorities="io.github.rajatparihar1994.indewas"
             android:name=".database.NewsProvider"
             android:exported="false"></provider>
-        <activity android:name=".DetailNews" />
+        
     </application>
 
 </manifest>

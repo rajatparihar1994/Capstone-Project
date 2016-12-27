@@ -22,6 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingBottom="@dimen/snivpadding"
+                android:contentDescription="@string/imageContentDescription"
                />
 
             <android.support.design.widget.FloatingActionButton
@@ -29,19 +30,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_gravity="bottom"
                 android:layout_margin="@dimen/fab_margin"
-                android:elevation="0dp"
-
-
+                android:src="@drawable/share_variant"
 
                 />
             </RelativeLayout>
             <TextView
                 android:layout_margin="8dp"
                 android:id="@+id/text_view_news_headline"
-                android:text="HeadingHeadingHeadingHeadingHeading"
+                android:text="@string/testheadlinetext"
                 android:textSize="18sp"
                 style="@style/DetailNewsHeadlineText"
                 android:background="@color/transperent"
@@ -50,7 +49,7 @@
 
             <TextView
                 android:id="@+id/text_view_news_detail"
-                android:text="Content"
+                android:text="@string/testcontenttext"
                 style="@style/DetailNewsContentText"
                 android:textColor="@android:color/black"
                 android:fontFamily="sans-serif-medium"
