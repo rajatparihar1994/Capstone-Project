@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,8 +26,9 @@ public class DetailNews extends AppCompatActivity {
     private ImageView newsDetailImageView;
     private TextView newsHeadlineTextView,newsDetailTextView;
     private News currentNews;
-    private FirebaseStorage mFirebaseStorage;
+
     private StorageReference mStorageReference;
+    private StorageReference filePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +48,15 @@ public class DetailNews extends AppCompatActivity {
             }
         });
 
-        mFirebaseStorage = FirebaseStorage.getInstance();
-        mStorageReference = mFirebaseStorage.getReference().child(Constants.FIREBASE_IMAGE_PATH);
+
+        mStorageReference = FirebaseStorage.getInstance().getReference();
 
 
 
         Intent intent = getIntent();
         currentNews = intent.getParcelableExtra("singleNews");
+
+        Log.e("DetailNews", currentNews.getImage()+ "");
         newsDetailImageView = (ImageView)findViewById(R.id.image_view_news_image) ;
         newsHeadlineTextView = (TextView)findViewById(R.id.text_view_news_headline);
         newsDetailTextView = (TextView) findViewById(R.id.text_view_news_detail) ;
@@ -60,16 +64,18 @@ public class DetailNews extends AppCompatActivity {
         newsHeadlineTextView.setText(currentNews.getHeadline());
         newsDetailTextView.setText(currentNews.getNews_content());
 
-        mStorageReference = mFirebaseStorage.getReference().child(Constants.FIREBASE_IMAGE_PATH).child(currentNews.getImage());
-        mStorageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+
+        filePath = mStorageReference.child(Constants.FIREBASE_IMAGE_PATH).child(currentNews.getImage());
+        filePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Picasso.with(getApplicationContext())
-                        .load(uri)
+                    Picasso.with(getApplicationContext())
+                        .load(uri).placeholder(R.drawable.no_image_available)
                         .error(R.drawable.no_image_available)
                         .into(newsDetailImageView);
             }
         });
+        Log.e("DetailNews", filePath + "");
 
 
     }

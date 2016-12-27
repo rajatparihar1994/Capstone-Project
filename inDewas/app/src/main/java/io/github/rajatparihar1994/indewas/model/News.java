@@ -11,24 +11,12 @@ import android.os.Parcelable;
 
 public class News implements Parcelable {
 
-    public String headline, news_content, image , date , time ;
-
-    public News() {
-    }
-
-    public News(String headline, String news_content, String image, String date, String time) {
-        this.headline = headline;
-        this.news_content = news_content;
-        this.image = image;
-        this.date = date;
-        this.time = time;
-    }
-
-    public News(String headline, String image) {
-        this.headline = headline;
-        this.image = image;
-    }
-
+    public String headline;
+    public String news_content;
+    public String image;
+    public String date;
+    public String time;
+    public Long newsid;
 
 
     public String getHeadline() {
@@ -51,6 +39,24 @@ public class News implements Parcelable {
         return time;
     }
 
+    public Long getNewsid() {
+        return newsid;
+    }
+
+
+    public News() {
+    }
+
+    public News(String headline,String news_content, Long newsid, String image, String date, String time ) {
+        this.headline = headline;
+        this.news_content = news_content;
+        this.image = image;
+        this.date = date;
+        this.time = time;
+        this.newsid = newsid;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -58,21 +64,22 @@ public class News implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-
-        parcel.writeString(getHeadline());
-        parcel.writeString(getNews_content());
-        parcel.writeString(getImage());
-        parcel.writeString(getDate());
-        parcel.writeString(getTime());
-
+        parcel.writeString(headline);
+        parcel.writeString(news_content);
+        parcel.writeLong(newsid);
+        parcel.writeString(image);
+        parcel.writeString(date);
+        parcel.writeString(time);
     }
+
 
     private News(Parcel in) {
         headline = in.readString();
         news_content = in.readString();
+        newsid = in.readLong();
+        image = in.readString();
         date = in.readString();
         time = in.readString();
-        image = in.readString();
     }
 
     public static final Creator<News> CREATOR = new Parcelable.Creator<News>() {

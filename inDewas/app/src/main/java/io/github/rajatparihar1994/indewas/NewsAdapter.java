@@ -1,6 +1,7 @@
 package io.github.rajatparihar1994.indewas;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -41,12 +42,11 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
     private View listItemView;
     private StorageReference filePathRef;
-    private ImageView imageview;
-    String downloadImageUrl;
+    private Uri imageUri;
 
-    public NewsAdapter(Context context, int resource, List<News> newsList, StorageReference firebaseStorage) {
+    public NewsAdapter(Context context, int resource, List<News> newsList) {
         super(context, resource, newsList);
-        //this.mStorageRef = firebaseStorage;
+
         mStorageRef = FirebaseStorage.getInstance().getReference();
     }
 
@@ -58,7 +58,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.news_list_item, parent, false);
         }
 
-        News currentNews = getItem(position);
+        final News currentNews = getItem(position);
 
         TextView newsHeadline = (TextView) listItemView.findViewById(R.id.news_headline);
         newsHeadline.setText(currentNews.getHeadline());
@@ -70,10 +70,22 @@ public class NewsAdapter extends ArrayAdapter<News> {
         filePathRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
+                imageUri = uri;
+                Log.e("NewsAdapter Uri", uri + "");
                 Picasso.with(getContext())
                         .load(uri).placeholder(R.drawable.no_image_available)
                         .error(R.drawable.no_image_available)
                         .into(imageview);
+            }
+        });
+        listItemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), DetailNews.class);
+                intent.putExtra("singleNews", currentNews);
+                intent.putExtra("currentNews_image", imageUri+"");
+                getContext().startActivity(intent);
+
             }
         });
         Log.e("FilePath", filePathRef + "");
