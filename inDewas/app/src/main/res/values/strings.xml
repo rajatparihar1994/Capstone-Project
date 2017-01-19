@@ -3,8 +3,6 @@
     <string name="firebse_database_news">news</string>
 
 
-
-
     <!-- Toast Strings -->
     <string name="news_updated">Feeds updated...</string>
 
@@ -15,8 +13,20 @@
     <string name="testcontenttext">ContentContentContentContent</string>
     <string name="showImagecheckbox">Show Images</string>
     <string name="dontShowImageCheckbox">Dont Show Images</string>
+    <string name="toastmessagenodata">No Data in Database</string>
+    <string name="firebase_storage_newsImages">newsImages</string>
 
 
+    <!-- Widget related-->
+    <string name="title_widget">inTouch</string>
+    <string name="_wedgit_news_related_headline">News headline</string>
+    <string name="description_news_wedgit_image">Image for inTouch Wedgit</string>
 
 
-   </resources>
+    <!-- Account type (for sync-adapter authenticator) -->
+    <!-- SyncAdapter related -->
+    <string name="sync_account_type">inDewas.rajatparihar1994.com</string>
+    <string name="content_authority">io.github.rajatparihar1994.indewas</string>
+
+
+</resources>

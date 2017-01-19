@@ -16,17 +16,16 @@ import static android.R.attr.id;
  */
 
 public class NewsProvider extends ContentProvider {
-    private NewsDbHealper newsDbHealper;
-
-    private  static final int NEWS = 100;
-
+    private static final int NEWS = 100;
     private static final int NEWS_SINGLE = 101;
-
-    private static final UriMatcher sURI_MATCHER= new UriMatcher(UriMatcher.NO_MATCH) ;
+    private static final UriMatcher sURI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
 
     static {
         sURI_MATCHER.addURI(NewsContract.CONTENT_AUTHORITY, NewsContract.PATH_NEWS, NEWS);
-        sURI_MATCHER.addURI(NewsContract.CONTENT_AUTHORITY, NewsContract.PATH_NEWS + "/*", NEWS_SINGLE);}
+        sURI_MATCHER.addURI(NewsContract.CONTENT_AUTHORITY, NewsContract.PATH_NEWS + "/*", NEWS_SINGLE);
+    }
+
+    private NewsDbHealper newsDbHealper;
 
     @Override
     public boolean onCreate() {
@@ -41,9 +40,9 @@ public class NewsProvider extends ContentProvider {
 
         Cursor cursor;
         int match = sURI_MATCHER.match(uri);
-        switch (match){
+        switch (match) {
             case NEWS:
-                cursor= sqLiteDatabase.query(NewsContract.NewsEntry.TABLE_NAME,projection,selection,selectionArgs,null,null,sortOrder);
+                cursor = sqLiteDatabase.query(NewsContract.NewsEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
                 break;
             /*case NEWS_SINGLE:
                 selection = NewsContract.NewsEntry.COLUMN_NEWSID + "=?";

@@ -12,23 +12,21 @@
         android:id="@+id/news_image"
         android:layout_width="@dimen/list_item_height"
         android:layout_height="@dimen/list_item_height"
-        android:src="@drawable/no_image_available"
         android:adjustViewBounds="true"
         android:contentDescription="@string/imageContentDescription"
-        />
+        android:src="@drawable/no_image_available" />
 
     <LinearLayout
+        android:id="@+id/text_container"
         android:layout_width="match_parent"
         android:layout_height="@dimen/list_item_height"
-        android:orientation="vertical"
 
-        android:id="@+id/text_container"
-        >
+        android:orientation="vertical">
+
         <TextView
             android:id="@+id/news_headline"
             style="@style/ListStyle"
-            tools:text="Hello For  testing"
-            />
+            tools:text="Hello For  testing" />
 
     </LinearLayout>
 </LinearLayout>

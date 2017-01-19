@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="250dp"
+    android:padding="0dp">
+
+    <RelativeLayout
+        android:id="@+id/widget"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:minHeight="250dp">
+
+        <ImageView
+            android:id="@+id/widget_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/description_news_wedgit_image"
+            android:scaleType="centerCrop"
+            android:src="@drawable/no_image_available" />
+
+        <TextView
+            android:id="@+id/widget_headline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/widget_image"
+            android:background="#66000000"
+            android:gravity="center_vertical"
+            android:minHeight="50dp"
+            android:padding="8dp"
+            android:text="@string/_wedgit_news_related_headline"
+            android:textColor="#f5f5f5"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+
+</FrameLayout>

@@ -17,8 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:contentDescription="@string/imageContentDescription"
-            android:scaleType="centerCrop"
             android:minHeight="@dimen/first_news_image_min_hight"
+            android:scaleType="centerCrop"
             android:src="@drawable/no_image_available" />
 
         <TextView

@@ -4,10 +4,10 @@
     tools:context="io.github.rajatparihar1994.indewas.MainActivity">
     <item
         android:id="@+id/action_check"
-        android:title="@string/checkboxforimage"
+        android:checkable="true"
+        android:checked="false"
         android:orderInCategory="10"
         android:showAsAction="never"
-        android:visible="true"
-        android:checkable="true"
-        android:checked="false"/>
+        android:title="@string/checkboxforimage"
+        android:visible="true" />
 </menu>

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "585581042662-5fhv96jd5pu0onkcnod0a9s7c8mfobih.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.github.rajatparihar1994.indewas",
+            "certificate_hash": "944441ADDFEC132D245FB0103D5A6363782505FD"
+          }
+        },
+        {
           "client_id": "585581042662-r2rdkps7vpfmlc1u8hrqn3l0s6h7leb1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

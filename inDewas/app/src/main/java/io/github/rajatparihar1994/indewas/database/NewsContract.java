@@ -9,14 +9,14 @@ import android.provider.BaseColumns;
 
 public class NewsContract {
 
-    public NewsContract() {}
-
-
     public static final String CONTENT_AUTHORITY = "io.github.rajatparihar1994.indewas";
-    public static final Uri BASE_CONTENT_URI = Uri.parse("content://"+CONTENT_AUTHORITY);
+    public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
     public static final String PATH_NEWS = "news";
 
-    public static final class NewsEntry implements BaseColumns{
+    public NewsContract() {
+    }
+
+    public static final class NewsEntry implements BaseColumns {
 
         public static final String TABLE_NAME = "news";
         public static final String COLUMN_ID = BaseColumns._ID;
@@ -27,7 +27,7 @@ public class NewsContract {
         public static final String COLUMN_NEWS_CONTENT = "news_content";
         public static final String COLUMN_IMAGE = "image";
 
-        public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI,PATH_NEWS);
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_NEWS);
     }
 
 }

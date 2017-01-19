@@ -3,17 +3,14 @@ package io.github.rajatparihar1994.indewas;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
-
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -55,7 +52,7 @@ public class DetailNews extends AppCompatActivity {
         mStorageReference = FirebaseStorage.getInstance().getReference();
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        boolean show_image = sharedPreferences.getBoolean("IMAGE", Boolean.FALSE);
+        boolean show_image = sharedPreferences.getBoolean("IMAGE", Boolean.TRUE);
 
 
         Intent intent = getIntent();

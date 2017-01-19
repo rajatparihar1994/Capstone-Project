@@ -6,4 +6,11 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="snivpadding">16dp</dimen>
     <dimen name="first_news_image_min_hight">250dp</dimen>
+
+    <!-- Today Widget -->
+    <dimen name="widget_today_default_width">250dp</dimen>
+    <dimen name="widget_today_default_height">350dp</dimen>
+    <dimen name="widget_today_min_resize_width">350dp</dimen>
+    <dimen name="widget_today_min_resize_height">400dp</dimen>
+
 </resources>
